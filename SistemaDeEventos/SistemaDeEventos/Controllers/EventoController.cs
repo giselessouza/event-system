@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SistemaDeEventos.BLL;
 using SistemaDeEventos.DL;
 using System;
 using System.Collections.Generic;
@@ -12,25 +13,26 @@ namespace SistemaDeEventos.Controllers
 
     public class EventoController : Controller
     {
-        private readonly EventoService svc;
-        public EventoController(EventoService svc)
+        private readonly EventoService service;
+        public EventoController(EventoService service)
         {
-            this.svc = svc;
+            this.service = service;
         }
+        
         // GET: api/<EventoController>
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(svc.Listar());
+            return Ok(service.Listar());
         }
-
+        /*
         // GET api/<EventoController>/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            return Ok(svc.Obter(id));
+            return Ok(service.Obter(id));
         }
-
+        */
 
 
         // POST api/<EventoController>
@@ -40,11 +42,11 @@ namespace SistemaDeEventos.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             else
-                return Ok(svc.Criar(value));
+                return Ok(service.Criar(value));
         }
 
 
-
+    /*
         // PUT api/<EventoController>/5
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] UpdateEventoModel value)
@@ -53,7 +55,7 @@ namespace SistemaDeEventos.Controllers
                 return BadRequest(ModelState);
             else
             {
-                var retorno = svc.Editar(id, value);
+                var retorno = service.Editar(id, value);
 
 
 
@@ -67,16 +69,14 @@ namespace SistemaDeEventos.Controllers
 
         }
 
-
-
         // DELETE api/<EventoController>/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            if (svc.Excluir(id))
+            if (service.Excluir(id))
                 return Ok();
             else
                 return NotFound();
-        }
+        } */
     }
 }
