@@ -25,6 +25,19 @@ namespace SistemaDeEventos.Controllers
         {
             return Ok(service.Listar());
         }
+
+        [HttpGet("{IdCategoriaEvento}")]
+        public IActionResult Get(int IdCategoriaEvento)
+        {
+            return Ok(service.ListarPorCateg());
+        }
+
+        [HttpGet("{DataHoraInicio}")]
+        public IActionResult Get(DateTime DataHoraInicio)
+        {
+            return Ok(service.ListarData());
+        }
+
         /*
         // GET api/<EventoController>/5
         [HttpGet("{id}")]

@@ -12,6 +12,7 @@ namespace SistemaDeEventos.DAL
         {
             using (var db = new SistemaDeEventosContext())
             {
+
                 return db.Eventos.ToList();
             }
         }
@@ -36,9 +37,20 @@ namespace SistemaDeEventos.DAL
             return null;
         }
 
-        public Evento ListarPorId (Evento model)
+        public Evento ListarCateg (int categoria)
         {
-            return null;
+            using (var db = new SistemaDeEventosContext())
+            {
+                return db.Eventos.Where(x => x.IdCategoriaEvento == categoria).FirstOrDefault();
+            }
+        }
+
+        public Evento ListarData(DateTime data)
+        {
+            using (var db = new SistemaDeEventosContext())
+            {
+                return db.Eventos.Where(x => x.DataHoraInicio == data).FirstOrDefault();
+            }
         }
     }
 }

@@ -37,5 +37,30 @@ namespace SistemaDeEventos.BLL
             }
             return retorno;
         }
+
+        public List<ResponseEventoModel> ListarPorCateg()
+        {
+            var eventos = repositorio.ListarCateg();
+            var retorno = new List<ResponseEventoModel>();
+            foreach (var evento in eventos)
+            {
+                retorno.Add(new ResponseEventoModel(evento));
+            }
+            return retorno;
+        }
+
+        public List<ResponseEventoModel> ListarData()
+        {
+            var eventos = repositorio.ListarData();
+            var retorno = new List<ResponseEventoModel>();
+            foreach (var evento in eventos)
+            {
+                retorno.Add(new ResponseEventoModel(evento));
+            }
+            return retorno;
+
+
+
+        }
     }
 }
