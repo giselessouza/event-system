@@ -53,22 +53,26 @@ namespace SistemaDeEventos
 
             app.UseHttpsRedirection();
 
-            app.UseRouting();
+            app.UseStaticFiles();
 
-            app.UseSwagger();
+            app.UseCookiePolicy();
 
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Sistema de eventos");
-            });
-
-            app.UseAuthorization();
+            /* app.UseMvc(routes =>
+             {
+                 routes.MapRoute(
+                     name: "default",
+                     template: "{controller=Evento}/{action=Index}/{id?}");
+             }); */
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+<<<<<<< HEAD
 
               }
+=======
+        }
+>>>>>>> 8cea499f43012e84210934578b6139e223b90600
     }
 }

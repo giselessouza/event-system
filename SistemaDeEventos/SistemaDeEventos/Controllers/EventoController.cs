@@ -21,9 +21,9 @@ namespace SistemaDeEventos.Controllers
         
         // GET: api/<EventoController>
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Index()
         {
-            return Ok(service.Listar());
+            return View(service.Listar());
         }
 
         [HttpGet("{IdCategoriaEvento}")]
