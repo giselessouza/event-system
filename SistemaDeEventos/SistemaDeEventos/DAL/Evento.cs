@@ -10,7 +10,7 @@ namespace SistemaDeEventos.DAL
         public Evento()
         {
             Participacaos = new HashSet<Participacao>();
-        }
+        } 
 
         public int IdEvento { get; set; }
         public int IdEventoStatus { get; set; }
@@ -22,8 +22,9 @@ namespace SistemaDeEventos.DAL
         public string Descricao { get; set; }
         public int LimiteVagas { get; set; }
 
+        
         public virtual CategoriaEvento IdCategoriaEventoNavigation { get; set; }
         public virtual StatusEvento IdEventoStatusNavigation { get; set; }
-        public virtual ICollection<Participacao> Participacaos { get; set; }
+        public virtual ICollection<Participacao> Participacaos { get; set; } 
     }
 }
