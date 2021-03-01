@@ -12,7 +12,6 @@ namespace SistemaDeEventos.DAL
         {
             using (var db = new SistemaDeEventosContext())
             {
-
                 return db.Eventos.ToList();
             }
         }
