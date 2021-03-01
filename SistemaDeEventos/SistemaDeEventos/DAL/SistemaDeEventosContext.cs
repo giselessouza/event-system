@@ -19,7 +19,7 @@ namespace SistemaDeEventos.DAL
 
         public virtual DbSet<CategoriaEvento> CategoriaEventos { get; set; }
         public virtual DbSet<Evento> Eventos { get; set; }
-        public virtual DbSet<Participacao> Participacaos { get; set; }
+        public virtual DbSet<Participacao> Participacoes { get; set; }
         public virtual DbSet<StatusEvento> StatusEventos { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -101,7 +101,7 @@ namespace SistemaDeEventos.DAL
                     .IsUnicode(false);
 
                 entity.HasOne(d => d.IdEventoNavigation)
-                    .WithMany(p => p.Participacaos)
+                    .WithMany(p => p.Participacoes)
                     .HasForeignKey(d => d.IdEvento)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Participacao_Evento");

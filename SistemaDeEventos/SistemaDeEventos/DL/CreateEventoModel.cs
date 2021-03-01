@@ -20,7 +20,7 @@ namespace SistemaDeEventos.DL
 
         public virtual CategoriaEvento IdCategoriaEventoNavigation { get; set; }
         public virtual StatusEvento IdEventoStatusNavigation { get; set; }
-        public virtual ICollection<Participacao> Participacaos { get; set; }
+        public virtual ICollection<Participacao> Participacoes { get; set; }
 
     }
 }

@@ -35,12 +35,16 @@ namespace SistemaDeEventos
                 (provider => provider.GetService<IHttpContextAccessor>().HttpContext.User);
 
             services.AddScoped<EventoRepositorio>();
-            
+
+            services.AddScoped<ParticipacaoRepositorio>();
+
             services.AddControllers();
 
             services.AddSwaggerGen();
 
-            services.AddTransient<EventoService>(); 
+            services.AddTransient<EventoService>();
+
+            services.AddTransient<ParticipacaoService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

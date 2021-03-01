@@ -20,8 +20,13 @@ namespace SistemaDeEventos.BLL
         {
             var evento = new Evento();
             evento.Nome = model.Nome;
+            evento.DataHoraInicio = model.DataHoraInicio;
+            evento.DataHoraFim = model.DataHoraFim;
+            evento.Local = model.Local;
             evento.Descricao = model.Descricao;
-
+            evento.LimiteVagas = model.LimiteVagas;
+            evento.IdCategoriaEvento = model.IdCategoriaEvento;
+            evento.IdEventoStatus = model.IdEventoStatus;
             repositorio.Inserir(evento);
 
             return new ResponseEventoModel(evento);
