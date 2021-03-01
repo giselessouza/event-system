@@ -35,7 +35,7 @@ namespace SistemaDeEventos
                 (provider => provider.GetService<IHttpContextAccessor>().HttpContext.User);
 
             services.AddScoped<EventoRepositorio>();
-
+            
             services.AddControllers();
 
             services.AddSwaggerGen();
@@ -68,11 +68,6 @@ namespace SistemaDeEventos
             {
                 endpoints.MapControllers();
             });
-<<<<<<< HEAD
-
-              }
-=======
         }
->>>>>>> 8cea499f43012e84210934578b6139e223b90600
     }
 }
