@@ -27,7 +27,7 @@ namespace SistemaDeEventos.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] CreateEventoModel value)
+        public ActionResult Create(CreateStatusModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

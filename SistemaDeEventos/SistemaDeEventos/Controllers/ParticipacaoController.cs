@@ -16,16 +16,19 @@ namespace SistemaDeEventos.Controllers
         private readonly ParticipacaoService service;
 
         // GET: ParticipacaoController
+        [HttpGet]
         public ActionResult Get()
         {
             return Ok(service.Listar());
         }
 
+        /*
         // GET: ParticipacaoController/Details/5
+        [HttpPost]
         public ActionResult GetParticipanteByEvento(int idEvento)
         {
             return Ok(service.GetParticipanteByEvento(idEvento));
-        } 
+        } */
 
 
         // POST: ParticipacaoController/Create
@@ -39,17 +42,16 @@ namespace SistemaDeEventos.Controllers
         }
 
       
-
+        /*
         // POST: ParticipacaoController/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, UpdateParticipacaoModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             else
                 return Ok(service.Editar(id, model)); 
-        } 
+        } */
 
     
 

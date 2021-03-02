@@ -1,4 +1,9 @@
-﻿namespace SistemaDeEventos.Controllers
+﻿using SistemaDeEventos.BLL;
+using SistemaDeEventos.DAL;
+using SistemaDeEventos.DL;
+using System.Collections.Generic;
+
+namespace SistemaDeEventos.Controllers
 {
     public class StatusService
     {

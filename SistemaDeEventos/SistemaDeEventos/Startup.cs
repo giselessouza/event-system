@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using SistemaDeEventos.BLL;
+using SistemaDeEventos.Controllers;
 using SistemaDeEventos.DAL;
 using System;
 using System.Collections.Generic;
@@ -38,7 +39,9 @@ namespace SistemaDeEventos
 
             services.AddScoped<ParticipacaoRepositorio>();
 
-            services.AddScoped<CategoriaEvento>();
+            services.AddScoped<CategoriaRepositorio>();
+
+            services.AddScoped<StatusRepositorio>();
 
             services.AddControllers();
 
@@ -48,7 +51,9 @@ namespace SistemaDeEventos
 
             services.AddTransient<ParticipacaoService>();
 
-            services.AddTransient<CategoriaService>();    
+            services.AddTransient<CategoriaService>();
+
+            services.AddTransient<StatusService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
