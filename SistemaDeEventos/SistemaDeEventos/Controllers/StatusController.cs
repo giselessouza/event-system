@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SistemaDeEventos.BLL;
 using SistemaDeEventos.DL;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SistemaDeEventos.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[StatusController]")]
     [ApiController]
 
     public class StatusController : Controller
@@ -26,12 +27,12 @@ namespace SistemaDeEventos.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] CreateEventoModel value)
+        public ActionResult Create(CreateStatusModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             else
-                return Ok(service.Criar(value));
+                return Ok(service.Criar(model));
         }
 
 
