@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SistemaDeEventos.BLL;
 using SistemaDeEventos.DL;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ namespace SistemaDeEventos.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return null;
+            return Ok(service.Listar());
         }
 
         [HttpPost]
@@ -31,7 +32,7 @@ namespace SistemaDeEventos.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             else
-                return null;
+                return Ok(service.Criar(model));
         }
 
 
