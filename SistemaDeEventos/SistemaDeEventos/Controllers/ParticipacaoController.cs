@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SistemaDeEventos.Controllers
 {
-    [Route("api/[ParticipacaoController]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class ParticipacaoController : Controller
     {
