@@ -12,14 +12,12 @@ namespace SistemaDeEventos.DL
         public ResponseParticipacaoModel(Participacao modeldb)
         {
             // this.IdEvento = modeldb.IdEvento;
-            this.idParticipacao = modeldb.IdParticipacao;
             this.IdEvento = modeldb.IdEvento;
             this.LoginParticipante = modeldb.LoginParticipante;
             this.FlagPresente = modeldb.FlagPresente;
             this.Nota = modeldb.Nota;
             this.Comentario = modeldb.Comentario;
         }
-        public int idParticipacao { get; set; }
 
     }
 }

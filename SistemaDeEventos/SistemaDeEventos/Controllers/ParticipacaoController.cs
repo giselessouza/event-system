@@ -15,9 +15,14 @@ namespace SistemaDeEventos.Controllers
     {
         private readonly ParticipacaoService service;
 
+        public ParticipacaoController(ParticipacaoService service)
+        {
+            this.service = service;
+        }
+
         // GET: ParticipacaoController
         [HttpGet]
-        public ActionResult Get()
+        public IActionResult Get()
         {
             return Ok(service.Listar());
         }

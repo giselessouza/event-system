@@ -18,9 +18,9 @@ namespace SistemaDeEventos.Controllers
         }
         // GET: api/<CategoriaController>
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Get()
         {
-            return View(service.Listar());
+            return Ok(service.Listar());
         }
     }
 }
