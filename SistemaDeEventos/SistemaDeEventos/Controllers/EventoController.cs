@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SistemaDeEventos.Controllers
 {
-    [Route("api/[EventoController]")]
+    [Route("api/[controller]")]
     [ApiController]
 
     public class EventoController : Controller
