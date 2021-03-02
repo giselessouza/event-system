@@ -18,7 +18,7 @@ namespace SistemaDeEventos.DL
         public string Descricao { get; set; }
         public int LimiteVagas { get; set; }
 
-        public virtual CategoriaEvento IdCategoriaEventoNavigation { get; set; }
+        public virtual CategoriaRepositorio IdCategoriaEventoNavigation { get; set; }
         public virtual StatusEvento IdEventoStatusNavigation { get; set; }
         public virtual ICollection<Participacao> Participacoes { get; set; }
 

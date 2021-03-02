@@ -26,7 +26,7 @@ namespace SistemaDeEventos.Controllers
             return View(service.Listar());
         }
 
-        [HttpGet("{IdCategoriaEvento}")]
+   /*     [HttpGet("{IdCategoriaEvento}")]
         public IActionResult Get(int IdCategoriaEvento)
         {
             return Ok(service.ListarPorCateg());
@@ -36,7 +36,7 @@ namespace SistemaDeEventos.Controllers
         public IActionResult Get(DateTime DataHoraInicio)
         {
             return Ok(service.ListarData());
-        }
+        } */
 
         /*
         // GET api/<EventoController>/5

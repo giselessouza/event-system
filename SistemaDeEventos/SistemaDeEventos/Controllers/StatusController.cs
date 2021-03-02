@@ -22,7 +22,7 @@ namespace SistemaDeEventos.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(service.Listar());
+            return null;
         }
 
         [HttpPost]
@@ -31,7 +31,7 @@ namespace SistemaDeEventos.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             else
-                return Ok(service.Criar(value));
+                return null;
         }
 
 

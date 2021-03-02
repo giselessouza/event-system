@@ -38,6 +38,8 @@ namespace SistemaDeEventos
 
             services.AddScoped<ParticipacaoRepositorio>();
 
+            services.AddScoped<CategoriaEvento>();
+
             services.AddControllers();
 
             services.AddSwaggerGen();
@@ -45,6 +47,8 @@ namespace SistemaDeEventos
             services.AddTransient<EventoService>();
 
             services.AddTransient<ParticipacaoService>();
+
+            services.AddTransient<CategoriaService>();    
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,16 +61,16 @@ namespace SistemaDeEventos
 
             app.UseHttpsRedirection();
 
-            app.UseStaticFiles();
+            app.UseRouting();
 
-            app.UseCookiePolicy();
+            app.UseSwagger();
 
-            /* app.UseMvc(routes =>
-             {
-                 routes.MapRoute(
-                     name: "default",
-                     template: "{controller=Evento}/{action=Index}/{id?}");
-             }); */
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Sistema de Eventos");
+            });
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

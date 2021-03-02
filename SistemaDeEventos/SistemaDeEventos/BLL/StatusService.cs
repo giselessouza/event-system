@@ -2,5 +2,7 @@
 {
     public class StatusService
     {
+        //ListStatusByEvento
+        //ChangeStatusByEvento
     }
 }

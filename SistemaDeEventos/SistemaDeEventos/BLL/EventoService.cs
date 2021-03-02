@@ -15,7 +15,8 @@ namespace SistemaDeEventos.BLL
         {
             this.repositorio = repositorio;
         }
-
+        //ListEventoByCategoria
+        //AvaliarEvento(nomeDoParticipante, StatuspresencaTrue) if statusPresenca != true return null
         public ResponseEventoModel Criar(CreateEventoModel model)
         {
             var evento = new Evento();
@@ -43,7 +44,7 @@ namespace SistemaDeEventos.BLL
             return retorno;
         }
 
-        public List<ResponseEventoModel> ListarPorCateg()
+      /*  public List<ResponseEventoModel> ListarPorCateg()
         {
             var eventos = repositorio.ListarCateg();
             var retorno = new List<ResponseEventoModel>();
@@ -62,10 +63,10 @@ namespace SistemaDeEventos.BLL
             {
                 retorno.Add(new ResponseEventoModel(evento));
             }
-            return retorno;
+            return retorno; 
 
 
 
-        }
+        } */
     }
 }
