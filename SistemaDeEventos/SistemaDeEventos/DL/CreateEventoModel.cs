@@ -8,8 +8,6 @@ namespace SistemaDeEventos.DL
 {
     public class CreateEventoModel
     {
-        public int IdEvento { get; set; }
-        public int IdEventoStatus { get; set; }
         public int IdCategoriaEvento { get; set; }
         public string Nome { get; set; }
         public DateTime DataHoraInicio { get; set; }
@@ -17,10 +15,7 @@ namespace SistemaDeEventos.DL
         public string Local { get; set; }
         public string Descricao { get; set; }
         public int LimiteVagas { get; set; }
-
-        public virtual CategoriaRepositorio IdCategoriaEventoNavigation { get; set; }
-        public virtual StatusEvento IdEventoStatusNavigation { get; set; }
-        public virtual ICollection<Participacao> Participacoes { get; set; }
+        public int IdEventoStatus { get; set; }
 
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -32,9 +33,16 @@ namespace SistemaDeEventos.DAL
             return null;
         }
 
-        public Evento Excluir (Evento model)
+        public List<Evento> Obter(int id)
         {
-            return null;
+            using (var db = new SistemaDeEventosContext())
+            {
+                var eventos = db.Eventos.Include(e => e.IdCategoriaEventoNavigation)
+                    .Include(e => e.IdEventoStatusNavigation)
+                    .Where(e => e.IdEvento == id).ToList();
+
+                return eventos;
+            }
         }
 
         public Evento ListarCateg (int categoria)

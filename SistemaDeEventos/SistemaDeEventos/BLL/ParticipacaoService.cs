@@ -39,8 +39,7 @@ namespace SistemaDeEventos.BLL
             participante.IdEvento = model.IdEvento;
             participante.LoginParticipante = model.LoginParticipante;
             participante.FlagPresente = model.FlagPresente;
-            participante.Nota = model.Nota;
-            participante.Comentario = model.Comentario;
+
             repositorio.CreateParticipante(participante);
 
             return new ResponseParticipacaoModel(participante);

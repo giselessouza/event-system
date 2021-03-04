@@ -26,26 +26,14 @@ namespace SistemaDeEventos.Controllers
             return Ok(service.Listar());
         }
 
-   /*     [HttpGet("{IdCategoriaEvento}")]
-        public IActionResult Get(int IdCategoriaEvento)
-        {
-            return Ok(service.ListarPorCateg());
-        }
-
-        [HttpGet("{DataHoraInicio}")]
-        public IActionResult Get(DateTime DataHoraInicio)
-        {
-            return Ok(service.ListarData());
-        } */
-
-        /*
+        
         // GET api/<EventoController>/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
             return Ok(service.Obter(id));
         }
-        */
+        
 
 
         // POST api/<EventoController>
@@ -59,7 +47,7 @@ namespace SistemaDeEventos.Controllers
         }
 
 
-    /*
+        /*
         // PUT api/<EventoController>/5
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] UpdateEventoModel value)
@@ -69,27 +57,20 @@ namespace SistemaDeEventos.Controllers
             else
             {
                 var retorno = service.Editar(id, value);
-
-
-
                 if (retorno == null)
                     return NotFound();
                 else
                     return Ok(retorno);
             }
 
-
-
         }
 
-        // DELETE api/<EventoController>/5
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+           /*     [HttpGet("{IdCategoriaEvento}")]
+        public IActionResult Get(int IdCategoriaEvento)
         {
-            if (service.Excluir(id))
-                return Ok();
-            else
-                return NotFound();
+            return Ok(service.ListarPorCateg());
+        }
         } */
+      
     }
 }

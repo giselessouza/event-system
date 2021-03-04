@@ -27,14 +27,6 @@ namespace SistemaDeEventos.Controllers
             return Ok(service.Listar());
         }
 
-        /*
-        // GET: ParticipacaoController/Details/5
-        [HttpPost]
-        public ActionResult GetParticipanteByEvento(int idEvento)
-        {
-            return Ok(service.GetParticipanteByEvento(idEvento));
-        } */
-
 
         // POST: ParticipacaoController/Create
         [HttpPost]
@@ -46,7 +38,7 @@ namespace SistemaDeEventos.Controllers
                 return Ok(service.Criar(model));
         }
 
-      
+
         /*
         // POST: ParticipacaoController/Edit/5
         [HttpPost]
@@ -56,9 +48,17 @@ namespace SistemaDeEventos.Controllers
                 return BadRequest(ModelState);
             else
                 return Ok(service.Editar(id, model)); 
-        } */
+        } 
+        
+          // GET: ParticipacaoController/Details/5
+        [HttpPost]
+        public ActionResult GetParticipanteByEvento(int idEvento)
+        {
+            return Ok(service.GetParticipanteByEvento(idEvento));
+        }
+         */
 
-    
+
 
 
     }

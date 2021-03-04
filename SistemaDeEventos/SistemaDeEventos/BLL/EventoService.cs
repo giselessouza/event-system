@@ -1,4 +1,5 @@
-﻿using SistemaDeEventos.DAL;
+﻿using Microsoft.EntityFrameworkCore;
+using SistemaDeEventos.DAL;
 using SistemaDeEventos.DL;
 using System;
 using System.Collections.Generic;
@@ -15,8 +16,7 @@ namespace SistemaDeEventos.BLL
         {
             this.repositorio = repositorio;
         }
-        //ListEventoByCategoria
-        //AvaliarEvento(nomeDoParticipante, StatuspresencaTrue) if statusPresenca != true return null
+
         public ResponseEventoModel Criar(CreateEventoModel model)
         {
             var evento = new Evento();
@@ -44,29 +44,39 @@ namespace SistemaDeEventos.BLL
             return retorno;
         }
 
-      /*  public List<ResponseEventoModel> ListarPorCateg()
+        public List<Evento> Obter(int id)
         {
-            var eventos = repositorio.ListarCateg();
-            var retorno = new List<ResponseEventoModel>();
-            foreach (var evento in eventos)
+            using (var db = new SistemaDeEventosContext())
             {
-                retorno.Add(new ResponseEventoModel(evento));
+                var eventos = db.Eventos
+     
+                    .Where(e => e.IdEvento == id).ToList();
+
+                return eventos;
             }
-            return retorno;
         }
 
-        public List<ResponseEventoModel> ListarData()
-        {
-            var eventos = repositorio.ListarData();
-            var retorno = new List<ResponseEventoModel>();
-            foreach (var evento in eventos)
-            {
-                retorno.Add(new ResponseEventoModel(evento));
-            }
-            return retorno; 
+        /*  public List<ResponseEventoModel> ListarPorCateg()
+          {
+              var eventos = repositorio.ListarCateg();
+              var retorno = new List<ResponseEventoModel>();
+              foreach (var evento in eventos)
+              {
+                  retorno.Add(new ResponseEventoModel(evento));
+              }
+              return retorno;
+          }
 
+          public List<ResponseEventoModel> ListarData()
+          {
+              var eventos = repositorio.ListarData();
+              var retorno = new List<ResponseEventoModel>();
+              foreach (var evento in eventos)
+              {
+                  retorno.Add(new ResponseEventoModel(evento));
+              }
+              return retorno; 
 
-
-        } */
+          } */
     }
 }

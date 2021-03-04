@@ -26,14 +26,14 @@ namespace SistemaDeEventos.Controllers
             return Ok(service.Listar());
         }
 
-        [HttpPost]
+    /*    [HttpPost]
         public ActionResult Create(CreateStatusModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             else
                 return Ok(service.Criar(model));
-        }
+        } */
 
 
     }
