@@ -27,5 +27,36 @@ namespace SistemaDeEventos.BLL
             return retorno;
         }
 
+        public ResponseCategoriaModel Criar(CreateCategoriaModel model)
+        {
+            var categoria = new CategoriaEvento();
+            categoria.NomeCategoria = model.NomeCategoria;
+
+            repositorio.create(categoria);
+
+            return new ResponseCategoriaModel(categoria);
+        }
+
+        public UpdateCategoriaModel Editar(int id, UpdateCategoriaModel model)
+        {
+            var categoria = repositorio.findById(id);
+            if (categoria == null)
+                return null;
+            categoria.NomeCategoria = model.NomeCategoria;
+            repositorio.update(categoria);
+            return new ResponseCategoriaModel(categoria);
+        }
+
+        public bool Excluir(int id)
+        {
+            var categoria = repositorio.findById(id);
+            if (categoria == null)
+                return false;
+
+            repositorio.delete(categoria);
+
+            return true;
+        }
+
     }
 }
