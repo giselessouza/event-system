@@ -34,15 +34,33 @@ namespace SistemaDeEventos.Controllers
         public ResponseStatusModel Criar(CreateStatusModel model)
         {
             var Status = new StatusEvento();
-            Status.IdEventoStatus = model.idEvento;
             Status.NomeStatus = model.NomeStatus;
 
+            repositorio.CreateStatus(Status);
             return new ResponseStatusModel(Status);
         }
 
-        public ResponseStatusModel Editar(int IdEventoStatus, UpdateStatusModel model)
+        public UpdateStatusModel Editar(int id, UpdateStatusModel model)
         {
-            return null;
+            var status = repositorio.findById(id);
+            if (status == null)
+                return null;
+            status.NomeStatus = model.NomeStatus;
+
+            repositorio.Update(status);
+            return new ResponseStatusModel(status);
         }
+
+        public bool Excluir(int id)
+        {
+            var status = repositorio.findById(id);
+            if (status == null)
+                return false;
+
+            repositorio.Excluir(status);
+
+            return true;
+        }
+
     }
 }
