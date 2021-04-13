@@ -36,18 +36,44 @@ namespace SistemaDeEventos.BLL
         public ResponseParticipacaoModel Criar(CreateParticipacaoModel model)
         {
             var participante = new Participacao();
+            participante.IdParticipacao = model.IdParticipacao;
             participante.IdEvento = model.IdEvento;
             participante.LoginParticipante = model.LoginParticipante;
             participante.FlagPresente = model.FlagPresente;
+            participante.Nota = model.Nota;
+            participante.Comentario = model.Comentario;
 
-            repositorio.CreateParticipante(participante);
+            repositorio.create(participante);
 
             return new ResponseParticipacaoModel(participante);
         }
 
-        public UpdateParticipacaoModel Editar(int idParticipante, UpdateParticipacaoModel model)
-        {           
-            return null;
+        public UpdateParticipacaoModel Editar(int id, UpdateParticipacaoModel model)
+        {
+            var participante = repositorio.findById(id);
+            if (participante == null)
+                return null;
+            participante.IdParticipacao = model.IdParticipacao;
+            participante.IdEvento = model.IdEvento;
+            participante.LoginParticipante = model.LoginParticipante;
+            participante.FlagPresente = model.FlagPresente;
+            participante.Nota = model.Nota;
+            participante.Comentario = model.Comentario;
+
+
+            repositorio.update(participante);
+            return new ResponseParticipacaoModel(participante);
+        }
+
+        public bool Excluir(int id)
+        {
+            var participacao = repositorio.findById(id);
+            if (participacao == null)
+                return false;
+
+            repositorio.delete(participacao);
+
+            return true;
         }
     }
 }

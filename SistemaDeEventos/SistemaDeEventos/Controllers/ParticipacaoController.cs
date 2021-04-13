@@ -20,15 +20,12 @@ namespace SistemaDeEventos.Controllers
             this.service = service;
         }
 
-        // GET: ParticipacaoController
         [HttpGet]
         public IActionResult Get()
         {
             return Ok(service.Listar());
         }
 
-
-        // POST: ParticipacaoController/Create
         [HttpPost]
         public ActionResult Create(CreateParticipacaoModel model)
         {
@@ -37,29 +34,23 @@ namespace SistemaDeEventos.Controllers
             else
                 return Ok(service.Criar(model));
         }
-
-
         /*
-        // POST: ParticipacaoController/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, UpdateParticipacaoModel model)
+        [HttpPut("{id}")]
+        public IActionResult Edit(int id, UpdateParticipacaoModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             else
                 return Ok(service.Editar(id, model)); 
-        } 
-        
-          // GET: ParticipacaoController/Details/5
-        [HttpPost]
-        public ActionResult GetParticipanteByEvento(int idEvento)
-        {
-            return Ok(service.GetParticipanteByEvento(idEvento));
         }
-         */
 
-
-
-
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            if (service.Excluir(id))
+                return Ok();
+            else
+                return NotFound();
+        } */
     }
 }
