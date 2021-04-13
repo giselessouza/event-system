@@ -26,15 +26,41 @@ namespace SistemaDeEventos.Controllers
             return Ok(service.Listar());
         }
 
-    /*    [HttpPost]
+       [HttpPost]
         public ActionResult Create(CreateStatusModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             else
                 return Ok(service.Criar(model));
-        } */
+        }
 
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, [FromBody] UpdateStatusModel value)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            else
+            {
+                var retorno = service.Editar(id, value);
+
+                if (retorno == null)
+                    return NotFound();
+                else
+                    return Ok(retorno);
+            }
+        }
+
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            {
+                if (service.Excluir(id))
+                    return Ok();
+                else
+                    return NotFound();
+            }
+        }
 
     }
 }

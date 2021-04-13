@@ -1,4 +1,5 @@
-﻿using SistemaDeEventos.DAL;
+﻿using Microsoft.EntityFrameworkCore;
+using SistemaDeEventos.DAL;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -26,14 +27,36 @@ namespace SistemaDeEventos.BLL
             }
         }
 
-        public Participacao EditParticipante(Participacao model)
+        public StatusEvento Update(StatusEvento model)
         {
-            return null;
+            using (var db = new SistemaDeEventosContext())
+            {
+                db.Entry(model).State = EntityState.Modified;
+
+                db.SaveChanges();
+
+                return model;
+            }
         }
 
-        public Evento GetParticipanteByEvento(Evento model)
+        public StatusEvento findById(int id)
         {
-            return null;
+            using (var db = new SistemaDeEventosContext())
+            {
+                return db.StatusEventos.Where(x => x.IdEventoStatus == id).FirstOrDefault();
+            }
+        }
+
+        public bool Excluir(StatusEvento model)
+        {
+            using (var db = new SistemaDeEventosContext())
+            {
+                db.Entry(model).State = EntityState.Deleted;
+
+                db.SaveChanges();
+
+                return true;
+            }
         }
 
     }
