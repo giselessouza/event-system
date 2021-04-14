@@ -13,8 +13,9 @@ namespace SistemaDeEventos.DAL
         {
             using (var db = new SistemaDeEventosContext())
             {
+                //assim se faz left join
+                return db.Eventos.Include(x=>x.IdCategoriaEventoNavigation).Include(x=>x.IdEventoStatusNavigation).ToList();
 
-                return db.Eventos.ToList();
             }
         }
 

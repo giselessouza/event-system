@@ -19,7 +19,14 @@ namespace SistemaDeEventos.DL
             this.DataHoraFim = modeldb.DataHoraFim;
             this.Local = modeldb.Local;
             this.LimiteVagas = modeldb.LimiteVagas;
-
+            if(modeldb.IdCategoriaEventoNavigation != null)
+            {
+                this.CategoriaEvento = modeldb.IdCategoriaEventoNavigation.NomeCategoria;
+            }
+            if(modeldb.IdEventoStatusNavigation != null)
+            {
+                this.EventoStatus = modeldb.IdEventoStatusNavigation.NomeStatus;
+            }
         }
         public int IdCategoriaEvento { get; set; }
         public string Nome { get; set; }
@@ -28,9 +35,9 @@ namespace SistemaDeEventos.DL
         public string Local { get; set; }
         public string Descricao { get; set; }
         public int LimiteVagas { get; set; }
-        
+        public String EventoStatus { get; set; }
         public int IdEvento { get; set; }
-
+        public String CategoriaEvento { get; set; }
         public int IdEventoStatus { get; set; }
 
     }
