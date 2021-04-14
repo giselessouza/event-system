@@ -65,7 +65,7 @@ namespace SistemaDeEventos
             }
 
             app.UseHttpsRedirection();
-
+            app.UseCors();
             app.UseRouting();
 
             app.UseSwagger();
