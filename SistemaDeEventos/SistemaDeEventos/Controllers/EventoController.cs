@@ -18,7 +18,7 @@ namespace SistemaDeEventos.Controllers
         {
             this.service = service;
         }
-        
+
         // GET: api/<EventoController>
         [HttpGet]
         public IActionResult Get()
@@ -26,7 +26,20 @@ namespace SistemaDeEventos.Controllers
             return Ok(service.Listar());
         }
 
-        
+        // GET: api/<EventosController>
+        [HttpGet("/listByCategoria/{idCategoria}")]
+        public IActionResult ListarCategoria(int idCategoria)
+        {
+            return Ok(service.ListByCategoria(idCategoria));
+        }
+
+        // GET: api/<EventosController>
+        [HttpGet("/listByData/{data}")]
+        public IActionResult ListarData(DateTime data)
+        {
+            return Ok(service.ListByData(data));
+        }
+
         // GET api/<EventoController>/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)

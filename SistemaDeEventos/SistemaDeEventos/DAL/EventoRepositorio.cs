@@ -49,19 +49,19 @@ namespace SistemaDeEventos.DAL
             }
         }
 
-        public Evento ListarCateg (int categoria)
+        public List<Evento> ListByCategoria(int categoria)
         {
             using (var db = new SistemaDeEventosContext())
             {
-                return db.Eventos.Where(x => x.IdCategoriaEvento == categoria).FirstOrDefault();
+                return db.Eventos.Where(x => x.IdCategoriaEvento == categoria).ToList();
             }
         }
 
-        public Evento ListarData(DateTime data)
+        public List<Evento> ListByData(DateTime data)
         {
             using (var db = new SistemaDeEventosContext())
             {
-                return db.Eventos.Where(x => x.DataHoraInicio == data).FirstOrDefault();
+                return db.Eventos.Where(x => x.DataHoraInicio == data).ToList();
             }
         }
     }

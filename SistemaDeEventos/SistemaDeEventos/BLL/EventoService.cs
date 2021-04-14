@@ -45,6 +45,33 @@ namespace SistemaDeEventos.BLL
             return retorno;
         }
 
+        public List<ResponseEventoModel> ListByCategoria(int idCategoria)
+          {
+            var eventos = repositorio.ListByCategoria(idCategoria);
+
+            var retorno = new List<ResponseEventoModel>();
+
+            foreach (var item in eventos)
+            {
+                retorno.Add(new ResponseEventoModel(item));
+            }
+
+            return retorno;
+        }
+        public List<ResponseEventoModel> ListByData(DateTime data)
+        {
+            var tarefas = repositorio.ListByData(data);
+
+            var retorno = new List<ResponseEventoModel>();
+
+            foreach (var item in tarefas)
+            {
+                retorno.Add(new ResponseEventoModel(item));
+            }
+
+            return retorno;
+        }
+
         public List<Evento> Obter(int id)
         {
             using (var db = new SistemaDeEventosContext())
