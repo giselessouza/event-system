@@ -18,6 +18,7 @@ namespace SistemaDeEventos.DL
             this.Comentario = modeldb.Comentario;
             this.Nota = modeldb.Nota;
         }
+        public int IdParticipacao { get; set; }
 
     }
 }

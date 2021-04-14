@@ -42,14 +42,7 @@ namespace SistemaDeEventos.Controllers
                 return Ok(service.Editar(id, model)); 
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
-        {
-            if (service.Excluir(id))
-                return Ok();
-            else
-                return NotFound();
-        }
+    
 
     }
 }

@@ -15,7 +15,6 @@ namespace SistemaDeEventos.DL
         public string Local { get; set; }
         public string Descricao { get; set; }
         public int LimiteVagas { get; set; }
-        public int IdEventoStatus { get; set; }
 
     }
 }

@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace SistemaDeEventos.DL
 {
-    public class UpdateEventoModel: CreateEventoModel
+    public class UpdateEventoModel 
     {
-
+        public int IdEvento { get; set; }
+        public int IdEventoStatus { get; set; }
     }
 }

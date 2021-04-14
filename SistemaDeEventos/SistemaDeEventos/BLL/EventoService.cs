@@ -27,7 +27,8 @@ namespace SistemaDeEventos.BLL
             evento.Descricao = model.Descricao;
             evento.LimiteVagas = model.LimiteVagas;
             evento.IdCategoriaEvento = model.IdCategoriaEvento;
-            evento.IdEventoStatus = model.IdEventoStatus;
+            //status padrão - aberto para inscrição (1)
+            evento.IdEventoStatus = 1;
             repositorio.Inserir(evento);
 
             return new ResponseEventoModel(evento);
@@ -56,27 +57,16 @@ namespace SistemaDeEventos.BLL
             }
         }
 
-        /*  public List<ResponseEventoModel> ListarPorCateg()
-          {
-              var eventos = repositorio.ListarCateg();
-              var retorno = new List<ResponseEventoModel>();
-              foreach (var evento in eventos)
-              {
-                  retorno.Add(new ResponseEventoModel(evento));
-              }
-              return retorno;
-          }
+        public ResponseEventoModel changeStatus(UpdateEventoModel model)
+        {
+            var changeStatus = repositorio.Obter(model.IdEvento);
+            if (changeStatus == null)
+                return null;
+            changeStatus.IdEvento = model.IdEvento;
+            changeStatus.IdEventoStatus = model.IdEventoStatus;
+            repositorio.Atualizar(changeStatus);
+            return new ResponseEventoModel(changeStatus);
+        }
 
-          public List<ResponseEventoModel> ListarData()
-          {
-              var eventos = repositorio.ListarData();
-              var retorno = new List<ResponseEventoModel>();
-              foreach (var evento in eventos)
-              {
-                  retorno.Add(new ResponseEventoModel(evento));
-              }
-              return retorno; 
-
-          } */
     }
 }
