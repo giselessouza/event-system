@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SistemaDeEventos.BLL;
+using SistemaDeEventos.DL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,5 +23,26 @@ namespace SistemaDeEventos.Controllers
         {
             return Ok(service.Listar());
         }
+
+          [HttpPost]
+        public ActionResult Create(CreateCategoriaModel model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            else
+                return Ok(service.Criar(model));
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Edit(int id, UpdateCategoriaModel model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            else
+                return Ok(service.Editar(id, model)); 
+        }
+
+    
+
     }
 }

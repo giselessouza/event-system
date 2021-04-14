@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace SistemaDeEventos.DAL
             }
         }
 
-        public Participacao CreateParticipante(Participacao model)
+        public Participacao create(Participacao model)
         {
             using (var db = new SistemaDeEventosContext())
             {
@@ -26,14 +27,36 @@ namespace SistemaDeEventos.DAL
             }
         }
 
-        public Participacao EditParticipante(Participacao model)
+        public Participacao update(Participacao model)
         {
-            return null;
+            using (var db = new SistemaDeEventosContext())
+            {
+                db.Entry(model).State = EntityState.Modified;
+
+                db.SaveChanges();
+
+                return model;
+            }
         }
 
-        public Evento GetParticipanteByEvento(Evento model)
+        public bool delete(Participacao model)
         {
-            return null;
+            using (var db = new SistemaDeEventosContext())
+            {
+                db.Entry(model).State = EntityState.Deleted;
+
+                db.SaveChanges();
+
+                return true;
+            }
+        }
+
+        public Participacao findById(int id)
+        {
+            using (var db = new SistemaDeEventosContext())
+            {
+                return db.Participacoes.Where(x => x.IdParticipacao == id).FirstOrDefault();
+            }
         }
 
     }

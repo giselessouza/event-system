@@ -51,16 +51,7 @@ namespace SistemaDeEventos.Controllers
             }
         }
 
-        [HttpDelete]
-        public IActionResult Delete(int id)
-        {
-            {
-                if (service.Excluir(id))
-                    return Ok();
-                else
-                    return NotFound();
-            }
-        }
+   
 
     }
 }

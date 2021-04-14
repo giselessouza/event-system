@@ -12,7 +12,6 @@ namespace SistemaDeEventos.DL
         {
             this.IdCategoriaEvento = modeldb.IdCategoriaEvento;
             this.NomeCategoria = modeldb.NomeCategoria;
-            this.Eventos = modeldb.Eventos;
         }
     }
 }

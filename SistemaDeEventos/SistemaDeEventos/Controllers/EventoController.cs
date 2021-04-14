@@ -46,31 +46,21 @@ namespace SistemaDeEventos.Controllers
                 return Ok(service.Criar(value));
         }
 
-
-        /*
-        // PUT api/<EventoController>/5
-        [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] UpdateEventoModel value)
+        [HttpPut("/changeStatus")]
+        public IActionResult Put([FromBody] UpdateEventoModel value)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-            else
             {
-                var retorno = service.Editar(id, value);
-                if (retorno == null)
-                    return NotFound();
+                var result = service.changeStatus(value);
+
+                if (result is null)
+                    return BadRequest();
                 else
-                    return Ok(retorno);
+                {
+                    return Ok(result);
+                }
             }
 
         }
-
-           /*     [HttpGet("{IdCategoriaEvento}")]
-        public IActionResult Get(int IdCategoriaEvento)
-        {
-            return Ok(service.ListarPorCateg());
-        }
-        } */
       
     }
 }

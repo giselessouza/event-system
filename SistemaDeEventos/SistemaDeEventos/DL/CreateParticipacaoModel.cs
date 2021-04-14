@@ -10,7 +10,7 @@ namespace SistemaDeEventos.DL
     {
         public int IdEvento { get; set; }
         public string LoginParticipante { get; set; }
-        public bool FlagPresente { get; set; }
+
 
     }
 }
