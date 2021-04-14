@@ -30,18 +30,22 @@ namespace SistemaDeEventos.DAL
 
         public Evento Atualizar (Evento model)
         {
-            return null;
+            using (var db = new SistemaDeEventosContext())
+            {
+                db.Entry(model).State = EntityState.Modified;
+
+                db.SaveChanges();
+
+                return model;
+            }
         }
 
-        public List<Evento> Obter(int id)
+        public Evento Obter(int id)
         {
             using (var db = new SistemaDeEventosContext())
             {
-                var eventos = db.Eventos.Include(e => e.IdCategoriaEventoNavigation)
-                    .Include(e => e.IdEventoStatusNavigation)
-                    .Where(e => e.IdEvento == id).ToList();
+                return db.Eventos.Where(x => x.IdEvento == id).FirstOrDefault();
 
-                return eventos;
             }
         }
 

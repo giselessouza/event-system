@@ -34,23 +34,22 @@ namespace SistemaDeEventos.Controllers
             else
                 return Ok(service.Criar(model));
         }
-        /*
+
         [HttpPut("{id}")]
-        public IActionResult Edit(int id, UpdateParticipacaoModel model)
+        public IActionResult Put(int id, [FromBody] UpdateParticipacaoModel value) //atualizar participacao
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             else
-                return Ok(service.Editar(id, model)); 
+            {
+                var retorno = service.Editar(id, value);
+
+                if (retorno == null)
+                    return NotFound();
+                else
+                    return Ok(retorno);
+            }
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
-        {
-            if (service.Excluir(id))
-                return Ok();
-            else
-                return NotFound();
-        } */
     }
 }
