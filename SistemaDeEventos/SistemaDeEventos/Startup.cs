@@ -30,10 +30,14 @@ namespace SistemaDeEventos
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //Disponibilizar o usu�rio logado atrav�s de DI
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddTransient<IPrincipal>
-                (provider => provider.GetService<IHttpContextAccessor>().HttpContext.User);
+            services.AddCors(OptionsBuilderConfigurationExtensions =>
+            {
+                OptionsBuilderConfigurationExtensions.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                    });
+            });
 
             services.AddScoped<EventoRepositorio>();
 
