@@ -42,7 +42,7 @@ namespace SistemaDeEventos.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] UpdateParticipacaoModel value) //atualizar participacao
+        public IActionResult Put(int id, [FromBody] UpdateParticipanteModel value) //atualizar participacao
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -56,6 +56,8 @@ namespace SistemaDeEventos.Controllers
                     return Ok(retorno);
             }
         }
+
+      
 
     }
 }

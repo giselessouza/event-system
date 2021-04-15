@@ -10,7 +10,7 @@ namespace SistemaDeEventos.DAL
         public int IdParticipacao { get; set; }
         public int IdEvento { get; set; }
         public string LoginParticipante { get; set; }
-        public bool FlagPresente { get; set; }
+        public bool FlagPresente { get; set; } = false;
         public int? Nota { get; set; }
         public string Comentario { get; set; }
 

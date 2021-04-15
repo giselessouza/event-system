@@ -39,6 +39,7 @@ namespace SistemaDeEventos.BLL
             return retorno;
         }
 
+
         public ResponseParticipacaoModel Criar(CreateParticipacaoModel model)
         {
             var participante = new Participacao();
@@ -50,20 +51,27 @@ namespace SistemaDeEventos.BLL
             return new ResponseParticipacaoModel(participante);
         }
 
-        public UpdateParticipacaoModel Editar(int id, UpdateParticipacaoModel model)
+        public UpdateParticipanteModel Editar(int id, UpdateParticipanteModel model)
         {
             var participante = repositorio.findById(id);
             if (participante == null)
                 return null;
-            participante.IdEvento = model.IdEvento;
-            participante.LoginParticipante = model.LoginParticipante;
-            participante.FlagPresente = model.FlagPresente;
             participante.Nota = model.Nota;
             participante.Comentario = model.Comentario;
 
 
             repositorio.update(participante);
-            return new ResponseParticipacaoModel(participante);
+            return new ResponseUpdateParticipanteModel(participante);
+        }
+
+        public UpdateFlagParticipacaoModel EditarPresenca(int id, UpdateFlagParticipacaoModel model)
+        {
+            var participante = repositorio.findById(id);
+            if (participante == null)
+                return null;
+            participante.FlagPresente = model.FlagPresente;
+            repositorio.update(participante);
+            return new ResponseFlagParticipacaoModel(participante);
         }
 
         public bool Excluir(int id)
