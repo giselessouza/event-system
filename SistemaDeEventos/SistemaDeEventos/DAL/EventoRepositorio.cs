@@ -54,6 +54,7 @@ namespace SistemaDeEventos.DAL
         {
             using (var db = new SistemaDeEventosContext())
             {
+                db.Eventos.Include(x => x.IdCategoriaEventoNavigation).Include(x => x.IdEventoStatusNavigation).ToList();
                 return db.Eventos.Where(x => x.IdCategoriaEvento == categoria).ToList();
             }
         }
@@ -62,6 +63,7 @@ namespace SistemaDeEventos.DAL
         {
             using (var db = new SistemaDeEventosContext())
             {
+                db.Eventos.Include(x => x.IdCategoriaEventoNavigation).Include(x => x.IdEventoStatusNavigation).ToList();
                 return db.Eventos.Where(x => x.DataHoraInicio == data).ToList();
             }
         }
