@@ -26,6 +26,12 @@ namespace SistemaDeEventos.Controllers
             return Ok(service.Listar());
         }
 
+        [HttpGet("/listParticipantByEvento/{idEvento}")]
+        public IActionResult ListParticipacaoByEvento(int idEvento)
+        {
+            return Ok(service.GetParticipanteByEvento(idEvento));
+        }
+
         [HttpPost]
         public ActionResult Create(CreateParticipacaoModel model)
         {

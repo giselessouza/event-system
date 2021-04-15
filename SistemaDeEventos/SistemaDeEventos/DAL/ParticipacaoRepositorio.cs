@@ -17,6 +17,14 @@ namespace SistemaDeEventos.DAL
             }
         }
 
+        public List<Participacao> GetParticipanteByEvento(int idEvento)
+        {
+            using (var db = new SistemaDeEventosContext())
+            {
+                return db.Participacoes.Where(x => x.IdEvento == idEvento).ToList();
+            }
+        }
+
         public Participacao create(Participacao model)
         {
             using (var db = new SistemaDeEventosContext())

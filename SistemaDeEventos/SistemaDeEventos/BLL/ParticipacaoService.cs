@@ -28,9 +28,15 @@ namespace SistemaDeEventos.BLL
             return retorno;
         }
 
-        public Evento GetParticipanteByEvento(int idEvento)
+        public List<ResponseParticipacaoModel> GetParticipanteByEvento(int idEvento)
         {
-            return null;
+            var participantes = repositorio.GetParticipanteByEvento(idEvento);
+            var retorno = new List<ResponseParticipacaoModel>();
+            foreach (var item in participantes)
+            {
+                retorno.Add(new ResponseParticipacaoModel(item));
+            }
+            return retorno;
         }
 
         public ResponseParticipacaoModel Criar(CreateParticipacaoModel model)
