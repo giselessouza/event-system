@@ -56,8 +56,15 @@ namespace SistemaDeEventos.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             else
-                return Ok(service.Criar(value));
-        }
+            {
+                var validacao = service.Criar(value);
+                if (validacao.Sucesso)
+                {
+                    return Ok(validacao.ValorRetorno);
+                }
+                else return BadRequest(validacao.MensagemErro);
+            }
+            }
 
         [HttpPut("/changeStatus")]
         public IActionResult Put([FromBody] UpdateEventoModel value)

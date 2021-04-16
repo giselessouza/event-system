@@ -17,38 +17,50 @@ namespace SistemaDeEventos.BLL
             this.repositorio = repositorio;
         }
 
-        public ResponseEventoModel Criar(CreateEventoModel model)
+        public Validacao<ResponseEventoModel> Criar(CreateEventoModel model)
         {
-            DateTime hoje = DateTime.Now.Date;
-            DateTime eventoInicio = model.DataHoraInicio.Date;
-            DateTime eventoFim = model.DataHoraFim.Date;
-            int diaPosterior = DateTime.Compare(eventoInicio, hoje);
-            int mesmoDia = DateTime.Compare(eventoInicio, eventoFim);
-            int vagas = model.LimiteVagas;
+            //regra = quantidade de vaga deve ser maior que zero
+            if (model.LimiteVagas <= 0)
+            {
+                var validacao = new Validacao<ResponseEventoModel>();
+                validacao.MensagemErro = "Limite de vagas deve ser maior que zero";
+                return validacao;
+            }
 
-            if (diaPosterior > 0 && mesmoDia == 0 && vagas > 0) {
+            if (model.DataHoraInicio.Date <= DateTime.Today)
+            {
+                var validacao = new Validacao<ResponseEventoModel>();
+                validacao.MensagemErro = "A data do evento deve ser superior a data de hoje";
+                return validacao;
+            }
 
-                var evento = new Evento();
-                evento.Nome = model.Nome;
-                evento.DataHoraInicio = model.DataHoraInicio;
-                evento.DataHoraFim = model.DataHoraFim;
-                evento.Local = model.Local;
-                evento.Descricao = model.Descricao;
-                evento.LimiteVagas = model.LimiteVagas;
-                evento.IdCategoriaEvento = model.IdCategoriaEvento;
-                //status padrão - aberto para inscrição (1)
-                evento.IdEventoStatus = 1;
-                repositorio.Inserir(evento);
+            if (model.DataHoraInicio.Date != model.DataHoraFim.Date)
+            {
+                var validacao = new Validacao<ResponseEventoModel>();
+                validacao.MensagemErro = "A data do evento deve começar e terminar no mesmo dia";
+                return validacao;
+            }
 
-                return new ResponseEventoModel(evento);
-            } else return null;
+            var evento = new Evento();
+            evento.Nome = model.Nome;
+            evento.DataHoraInicio = model.DataHoraInicio;
+            evento.DataHoraFim = model.DataHoraFim;
+            evento.Local = model.Local;
+            evento.Descricao = model.Descricao;
+            evento.LimiteVagas = model.LimiteVagas;
+            evento.IdCategoriaEvento = model.IdCategoriaEvento;
+            //status padrão - aberto para inscrição (1)
+            evento.IdEventoStatus = 1;
+            repositorio.Inserir(evento);
+
+            return new Validacao<ResponseEventoModel>(new ResponseEventoModel(evento));
         }
 
         public List<ResponseEventoModel> Listar()
         {
             var eventos = repositorio.Listar();
             var retorno = new List<ResponseEventoModel>();
-            foreach(var evento in eventos)
+            foreach (var evento in eventos)
             {
                 retorno.Add(new ResponseEventoModel(evento));
             }
@@ -56,7 +68,7 @@ namespace SistemaDeEventos.BLL
         }
 
         public List<ResponseEventoModel> ListByCategoria(int idCategoria)
-          {
+        {
             var eventos = repositorio.ListByCategoria(idCategoria);
 
             var retorno = new List<ResponseEventoModel>();

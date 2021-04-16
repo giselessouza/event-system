@@ -25,6 +25,7 @@ namespace SistemaDeEventos.DAL
             {
                 db.Eventos.Add(model);
                 db.SaveChanges();
+                db.Eventos.Include(x => x.IdCategoriaEventoNavigation).Include(x => x.IdEventoStatusNavigation).ToList();
                 return model;
             }
         }
