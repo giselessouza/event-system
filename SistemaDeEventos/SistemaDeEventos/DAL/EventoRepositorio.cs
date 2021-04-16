@@ -45,6 +45,7 @@ namespace SistemaDeEventos.DAL
         {
             using (var db = new SistemaDeEventosContext())
             {
+                db.Eventos.Include(x => x.IdCategoriaEventoNavigation).Include(x => x.IdEventoStatusNavigation).ToList();
                 return db.Eventos.Where(x => x.IdEvento == id).FirstOrDefault();
 
             }
