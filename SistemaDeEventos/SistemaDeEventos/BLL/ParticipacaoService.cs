@@ -42,13 +42,17 @@ namespace SistemaDeEventos.BLL
 
         public ResponseParticipacaoModel Criar(CreateParticipacaoModel model)
         {
-            var participante = new Participacao();
-            participante.IdEvento = model.IdEvento;
-            participante.LoginParticipante = model.LoginParticipante;
+            var inscricoes = repositorio.IncricoesEvento(model.IdEvento);
+            var limiteVagas = repositorio.LimiteVagas(model.IdEvento);
+            if (inscricoes < limiteVagas) {
+                var participante = new Participacao();
+                participante.IdEvento = model.IdEvento;
+                participante.LoginParticipante = model.LoginParticipante;
 
-            repositorio.create(participante);
+                repositorio.create(participante);
 
-            return new ResponseParticipacaoModel(participante);
+                return new ResponseParticipacaoModel(participante);
+            } else return null;
         }
 
         public UpdateParticipanteModel Editar(int id, UpdateParticipanteModel model)

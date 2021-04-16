@@ -19,19 +19,29 @@ namespace SistemaDeEventos.BLL
 
         public ResponseEventoModel Criar(CreateEventoModel model)
         {
-            var evento = new Evento();
-            evento.Nome = model.Nome;
-            evento.DataHoraInicio = model.DataHoraInicio;
-            evento.DataHoraFim = model.DataHoraFim;
-            evento.Local = model.Local;
-            evento.Descricao = model.Descricao;
-            evento.LimiteVagas = model.LimiteVagas;
-            evento.IdCategoriaEvento = model.IdCategoriaEvento;
-            //status padrão - aberto para inscrição (1)
-            evento.IdEventoStatus = 1;
-            repositorio.Inserir(evento);
+            DateTime hoje = DateTime.Now.Date;
+            DateTime eventoInicio = model.DataHoraInicio.Date;
+            DateTime eventoFim = model.DataHoraFim.Date;
+            int diaPosterior = DateTime.Compare(eventoInicio, hoje);
+            int mesmoDia = DateTime.Compare(eventoInicio, eventoFim);
+            int vagas = model.LimiteVagas;
 
-            return new ResponseEventoModel(evento);
+            if (diaPosterior > 0 && mesmoDia == 0 && vagas > 0) {
+
+                var evento = new Evento();
+                evento.Nome = model.Nome;
+                evento.DataHoraInicio = model.DataHoraInicio;
+                evento.DataHoraFim = model.DataHoraFim;
+                evento.Local = model.Local;
+                evento.Descricao = model.Descricao;
+                evento.LimiteVagas = model.LimiteVagas;
+                evento.IdCategoriaEvento = model.IdCategoriaEvento;
+                //status padrão - aberto para inscrição (1)
+                evento.IdEventoStatus = 1;
+                repositorio.Inserir(evento);
+
+                return new ResponseEventoModel(evento);
+            } else return null;
         }
 
         public List<ResponseEventoModel> Listar()

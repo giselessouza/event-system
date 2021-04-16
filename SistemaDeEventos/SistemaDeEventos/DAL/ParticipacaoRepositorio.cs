@@ -67,5 +67,28 @@ namespace SistemaDeEventos.DAL
             }
         }
 
+        public int IncricoesEvento(int id)
+        {
+            using (var db = new SistemaDeEventosContext())
+            {
+                var incricoes = db.Participacoes.Include(p => p.IdEventoNavigation)
+                    .Where(p => p.IdEvento == id)
+                    .Count();
+
+                return incricoes;
+            }
+        }
+
+
+        public int LimiteVagas(int id)
+        {
+            using (var db = new SistemaDeEventosContext())
+            {
+                var limite = db.Eventos.Where(e => e.IdEvento == id).Select(e => e.LimiteVagas).First();
+
+                return limite;
+            }
+        }
+
     }
 }
