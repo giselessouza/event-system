@@ -72,16 +72,10 @@ namespace SistemaDeEventos.BLL
             return retorno;
         }
 
-        public List<Evento> Obter(int id)
+        public ResponseEventoModel Obter(int id)
         {
-            using (var db = new SistemaDeEventosContext())
-            {
-                var eventos = db.Eventos
-     
-                    .Where(e => e.IdEvento == id).ToList();
-
-                return eventos;
-            }
+            var evento = repositorio.Obter(id);
+            return new ResponseEventoModel(evento);
         }
 
         public ResponseEventoModel changeStatus(UpdateEventoModel model)
