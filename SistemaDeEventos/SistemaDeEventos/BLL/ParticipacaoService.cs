@@ -40,19 +40,31 @@ namespace SistemaDeEventos.BLL
         }
 
 
-        public ResponseParticipacaoModel Criar(CreateParticipacaoModel model)
+        public Validacao<ResponseParticipacaoModel> Criar(CreateParticipacaoModel model)
         {
             var inscricoes = repositorio.IncricoesEvento(model.IdEvento);
             var limiteVagas = repositorio.LimiteVagas(model.IdEvento);
-            if (inscricoes < limiteVagas) {
-                var participante = new Participacao();
-                participante.IdEvento = model.IdEvento; //adicionar um bad request se id vier null
+            if (inscricoes < limiteVagas)
+            {
+                var participante = new Participacao();          
+                participante.IdEvento = model.IdEvento;
+                if (participante.IdEvento == null | participante.IdEvento == 0)
+                {
+                    var validacao = new Validacao<ResponseParticipacaoModel>();
+                    validacao.MensagemErro = "O evento não existe";
+                    return validacao;
+                }
                 participante.LoginParticipante = model.LoginParticipante;
 
                 repositorio.create(participante);
 
-                return new ResponseParticipacaoModel(participante);
-            } else return null;
+                return new Validacao<ResponseParticipacaoModel>(new ResponseParticipacaoModel(participante));
+            }
+            else {
+                var validacao = new Validacao<ResponseParticipacaoModel>();
+                validacao.MensagemErro = "As inscricoes já excederam o limite de vagas disponiveis.";
+                return validacao;
+            };
         }
 
         public UpdateParticipanteModel Editar(int id, UpdateParticipanteModel model)

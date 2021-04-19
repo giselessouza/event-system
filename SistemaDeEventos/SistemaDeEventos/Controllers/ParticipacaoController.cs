@@ -38,7 +38,14 @@ namespace SistemaDeEventos.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             else
-                return Ok(service.Criar(model));
+            {
+                var validacao = service.Criar(model);
+                if (validacao.Sucesso)
+                {
+                    return Ok(validacao.ValorRetorno);
+                }
+                else return BadRequest(validacao.MensagemErro);
+            }
         }
 
         [HttpPut("{id}")]
