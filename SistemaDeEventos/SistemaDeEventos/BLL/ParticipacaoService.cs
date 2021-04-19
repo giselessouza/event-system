@@ -46,7 +46,7 @@ namespace SistemaDeEventos.BLL
             var limiteVagas = repositorio.LimiteVagas(model.IdEvento);
             if (inscricoes < limiteVagas) {
                 var participante = new Participacao();
-                participante.IdEvento = model.IdEvento;
+                participante.IdEvento = model.IdEvento; //adicionar um bad request se id vier null
                 participante.LoginParticipante = model.LoginParticipante;
 
                 repositorio.create(participante);

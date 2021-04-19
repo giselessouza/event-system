@@ -108,7 +108,7 @@ namespace SistemaDeEventos.BLL
             changeStatus.IdEvento = model.IdEvento;
             changeStatus.IdEventoStatus = model.IdEventoStatus;
             repositorio.Atualizar(changeStatus);
-            return new ResponseEventoModel(changeStatus);
+            return new ResponseEventoModel(repositorio.Obter(model.IdEvento));
         }
 
     }

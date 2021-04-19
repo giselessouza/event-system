@@ -35,9 +35,8 @@ namespace SistemaDeEventos.DAL
             using (var db = new SistemaDeEventosContext())
             {
                 db.Entry(model).State = EntityState.Modified;
-
+                db.Eventos.Include(x => x.IdCategoriaEventoNavigation).Include(x => x.IdEventoStatusNavigation).ToList();
                 db.SaveChanges();
-
                 return model;
             }
         }
